@@ -15,6 +15,9 @@ Moves castle(Chessboard board, bool color);
 Moves moves(Chessboard board, bool color);
 void print(Board);
 Chessboard init_board();
-void init_zo(Zobrist Z);
+void init_zo();
 Long get_hash(Chessboard board, bool turn);
+Board get_board_by_name(Chessboard board, char *name);
+Chessboard FEN(string FEN);
+#define MAX_DEPTH 8;
 #endif //CHESS_MOVE_ENGINE_H

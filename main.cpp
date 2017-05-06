@@ -3,6 +3,7 @@
 #include "move_engine.h"
 #include "board_constants.h"
 #include "typedefs.h"
+#include "ratings.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ int main() {
     cout << (knight_moves(static_cast<Board>(1),0)) << endl;
     cout << (char)(7+'a') <<endl;
     Chessboard brd = init_board();
+    init_zo();
+    player = white;
     Moves m = moves(brd,1);
     cout << "Length of moves: " << m.length() << endl;
     cout << "Number of moves: " << m.length()/4 << endl;
@@ -44,6 +47,13 @@ int main() {
     cout << zo_rand << endl;
     cout << zo_rand << endl;
     cout << knight <<endl;
-    cout << in_cell(brd.white_knight, 2) << endl;
+    cout << in_cell(brd.white_knight, 1) << endl;
+    cout << Z.table[1][pawn][white] << endl;
+    short arr[] = {1,2,3,4};
+    reverse(arr,0,3);
+    for(int i = 0; i < 4; i++){
+        cout << arr[i] << " ";
+    }
+    Chessboard FEN_Test = FEN();
     return 0;
 }

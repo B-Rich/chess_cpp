@@ -1,6 +1,3 @@
-//
-// Created by Me on 5/1/2017.
-//
 #include <string>
 #include <cstring>
 using namespace std;

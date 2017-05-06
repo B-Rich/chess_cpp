@@ -10,5 +10,6 @@ Long reversed(Long val);
 #define start(string, substring, length) (!strncmp(string, substring, length))
 #define stringer(c) (string(1, (char)(c)))
 #define zo_rand ((Long)rand() | (Long)rand() << 15 |(Long)rand() << 30 |(Long)rand() << 45 |((Long)rand() & 0xf) << 60 )
-#define in_cell(a,b) ((a >> b & 1) == 1)
+#define in_cell(a, b) ((a >> b & 1) == 1)
+#define add(a, b) (a |= ((Long)1 << b++))
 #endif //CHESS_FUNC_H
