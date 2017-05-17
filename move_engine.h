@@ -13,11 +13,16 @@ Long danger(Chessboard board, bool color);
 Moves king_moves(Board king, Long taken);
 Moves castle(Chessboard board, bool color);
 Moves moves(Chessboard board, bool color);
-void print(Board);
+void print(Board board);
 Chessboard init_board();
 void init_zo();
 Long get_hash(Chessboard board, bool turn);
 Board get_board_by_name(Chessboard board, char *name);
+Board* get_board(Chessboard* board, char unit);
 Chessboard FEN(string FEN);
-#define MAX_DEPTH 8;
+void print_cb(Chessboard board);
+int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to);
+char unit(Chessboard board, Moves square);
+void play(Chessboard *board, Moves move);
+extern int move_counter;
 #endif //CHESS_MOVE_ENGINE_H

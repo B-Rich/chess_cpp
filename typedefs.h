@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <cstring>
 using namespace std;
@@ -35,6 +36,7 @@ typedef struct{
     int beta;
     Moves move;
     bool color;
+    int rating;
 }Node;
 
 typedef struct{

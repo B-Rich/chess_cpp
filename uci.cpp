@@ -12,8 +12,15 @@ void UCI(){
             cout << "uciok" << endl;
             //}else if(strnicmp(input,"s",strlen("s"))){
         }else if(input == "isready") {
-            cout << "readyok" << endl;
-        //}else if(strcmp(input,"position",strlen("position"))){
+            cout << "uciok" << endl;
+        }else if(input.find("position ") == 0){
+            if(input.find("startpos ") != string::npos){
+                //FEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+            } else if (input.find("fen ") != string::npos){
+                //FEN(input.substr(input.find("fen ") + 4));
+            } else if (input.find("moves ") != string::npos){
+
+            }
 
         }else if(input == "quit"){
             exit(0);

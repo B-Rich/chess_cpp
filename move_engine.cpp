@@ -1,13 +1,16 @@
 #include "func.h"
 #include "typedefs.h"
 #include "board_constants.h"
+
 #define num_c(i) ((int)(move[i] - 'a'))
 #define num_r(i) ((int)((move[i] - '1')*8))
+#define legal(move) (all_moves.find(move) != std::string::npos)
 Long not_to_capture;
 Long units;
 Long taken;
 Zobrist Z;
 bool player;
+int move_counter;
 /*
 8 ║♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
 7 ║♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟
@@ -40,8 +43,8 @@ void print(Board board) {
 
 Board ortho_moves(int location) {
     Long loc = static_cast<ULong>(1) << location; //Binary value
-    Board Hor = (taken - 2 * loc) ^ reversed(reversed(taken) - (2 * reversed(loc)));
-    Board Ver = ((taken & file[location / 8]) - (loc * 2)) ^
+    Board Hor = (taken - 2 * loc) ^reversed(reversed(taken) - (2 * reversed(loc)));
+    Board Ver = ((taken & file[location % 8]) - (loc * 2)) ^
                 reversed(reversed(taken & file[location % 8]) - (reversed(loc) * 2));
     return (Hor & rank_[location / 8]) | (Ver & file[location % 8]);
 }
@@ -60,7 +63,7 @@ Moves black_pawn_moves(Board black_pawns, Board white_pawns, Board en_passant) {
     Moves moves = "";
     int position;
     //right
-    Long potential_moves = (black_pawns >> 7) & not_to_capture & taken & ~promotion_black & ~rook_right;
+    Long potential_moves = (black_pawns >> 7) & not_to_capture & taken & ~promotion_black & ~rook_left;
     Long capture = potential_moves & ~(potential_moves - 1);
     while (capture != 0) {
         position = trailing_count(capture);
@@ -70,7 +73,7 @@ Moves black_pawn_moves(Board black_pawns, Board white_pawns, Board en_passant) {
         capture = potential_moves & ~(potential_moves - 1);
     }
     //left
-    potential_moves = (black_pawns >> 9) & not_to_capture & taken & ~promotion_black & ~rook_left;
+    potential_moves = (black_pawns >> 9) & not_to_capture & taken & ~promotion_black & ~rook_right;
     capture = potential_moves & ~(potential_moves - 1);
     while (capture != 0) {
         position = trailing_count(capture);
@@ -185,7 +188,7 @@ Moves white_pawn_moves(Board white_pawns, Board black_pawns, Board en_passant) {
     }
     //advancing two squares
     potential_moves = (white_pawns << 16) & ~taken & (~taken << 8) &
-                      ~enpassant_white;//enpassant_black;//enpassant_white; <= original
+                      enpassant_white;//enpassant_black;//enpassant_white; <= original
     capture = potential_moves & ~(potential_moves - 1);
     while (capture != 0) {
         position = trailing_count(capture);
@@ -275,14 +278,14 @@ Moves knight_moves(Board knight, Long taken) {
             print(~knight_left);
             print(capture&~knight_left);
             print(not_to_capture);
-            print(capture&~knight_left&~not_to_capture);*/
+            print(capture&~knight_left&not_to_capture);*/
         }
         if (knight_location % 8 < 0x4) {
-            capture &= ~knight_left & ~not_to_capture; //~knight_left & not_to_capture;
+            capture &= ~knight_left & not_to_capture;//~knight_left & not_to_capture; //~knight_left & not_to_capture;
         } else {
-            capture &= ~knight_right & ~not_to_capture;//~knight_right & not_to_capture;
+            capture &= ~knight_right & not_to_capture;//~knight_right & not_to_capture;
         }
-        print(capture);
+        //print(capture);
         knight_moves = capture & ~(capture - 1);
         //all possible knight moves
         while (knight_moves != 0) {
@@ -305,7 +308,7 @@ Moves bishop_moves(Board bishop, Long taken) {
     Long bishop_moves, capture, bishops = bishop & ~(bishop - 1);
     while (bishops != 0) {
         bishop_location = trailing_count(bishops);
-        capture = diag_moves(bishop_location) & ~not_to_capture;
+        capture = diag_moves(bishop_location) & not_to_capture;
         bishop_moves = capture & ~(capture - 1);
         while (bishop_moves != 0) {
             location = trailing_count(bishop_moves);
@@ -327,13 +330,13 @@ Moves rook_moves(Board rook, Long takenn) {
     Long rook_moves, capture, rooks = rook & ~(rook - 1);
     while (rooks != 0) {
         rook_location = trailing_count(rooks);
-        capture = ortho_moves(rook_location) & ~not_to_capture;
+        capture = ortho_moves(rook_location) & not_to_capture;//not_to_capture;
         rook_moves = capture & ~(capture - 1);
-        print(rook);
-        print((file[0]|rank_[0]) & taken);
+        /*print(rook);
+        print((rank_[0] | file[0]) & taken);
         print(ortho_moves(rook_location));
         print(capture);
-        print(not_to_capture);
+        print(not_to_capture);*/
         while (rook_moves != 0) {
             location = trailing_count(rook_moves);
             moves += stringer((rook_location % 8 + 'a')) + to_string(rook_location / 8 + 1) +
@@ -353,7 +356,7 @@ Moves queen_moves(Board queen, Long taken) {
     Long queen_moves, capture, queens = queen & ~(queen - 1);
     while (queens != 0) {
         queen_location = trailing_count(queens);
-        capture = (diag_moves(queen_location) | ortho_moves(queen_location)) & ~not_to_capture;
+        capture = (diag_moves(queen_location) | ortho_moves(queen_location)) & not_to_capture;
         queen_moves = capture & ~(capture - 1);
         while (queen_moves != 0) {
             location = trailing_count(queen_moves);
@@ -478,7 +481,7 @@ Moves castle(Chessboard board, bool color) {
             if (board.queen_castle_black && (((static_cast<Long>(1) << 0x0L) & board.black_rook) != 0)) {
                 if (((taken | (dangerous & ~(static_cast<Long>(1) << 1))) &
                      ((static_cast<Long>(1) << 1) | (static_cast<Long>(1) << 2) | (static_cast<Long>(1) << 3))) == 0)
-                    moves +=  "d1b1"; //"0402";
+                    moves += "d1b1"; //"0402";
             }
         }
     }
@@ -501,7 +504,7 @@ Moves castle(Chessboard board, bool color) {
 Moves moves(Chessboard board, bool color) {
     Moves pawn;
     if (color == 0) {
-        not_to_capture = (board.white_king | board.black_bishop | board.black_knight | board.black_king |
+        not_to_capture = ~(board.white_king | board.black_bishop | board.black_knight | board.black_king |
                           board.black_pawn | board.black_queen | board.black_rook);
         units = (board.black_bishop | board.black_knight | board.black_pawn | board.black_queen | board.black_rook);
         taken = (board.white_bishop | board.white_knight | board.white_king | board.white_pawn | board.white_queen |
@@ -510,7 +513,7 @@ Moves moves(Chessboard board, bool color) {
         pawn = black_pawn_moves(board.black_pawn, board.white_pawn, board.en_passant);
     }
     if (color == 1) {
-        not_to_capture = (board.black_king | board.white_bishop | board.white_knight | board.white_king |
+        not_to_capture = ~(board.black_king | board.white_bishop | board.white_knight | board.white_king |
                           board.white_pawn | board.white_queen | board.white_rook);
         units = (board.white_bishop | board.white_knight | board.white_pawn | board.white_rook | board.white_queen);
         taken = (board.black_bishop | board.black_knight | board.black_king | board.black_pawn | board.black_queen |
@@ -519,13 +522,16 @@ Moves moves(Chessboard board, bool color) {
         pawn = white_pawn_moves(board.white_pawn, board.black_pawn, board.en_passant);
     }
     if (color == 1)
-        return pawn + "Rook: " + rook_moves(board.white_rook, color) + "Bishop: " + bishop_moves(board.white_bishop, color) +
-                "Knight: " + knight_moves(board.white_knight, color) + "Queen: " +queen_moves(board.white_queen, color) +
-                "King: " + king_moves(board.white_king, color) + "Castle: " + castle(board, color);
-    return pawn + "Rook: " + rook_moves(board.black_rook, color) + "Bishop: " +
+        return pawn + rook_moves(board.white_rook, color) +
+               bishop_moves(board.white_bishop, color) +
+               knight_moves(board.white_knight, color) +
+               queen_moves(board.white_queen, color) +
+               king_moves(board.white_king, color) + castle(board, color);
+    return pawn + rook_moves(board.black_rook, color) +
            bishop_moves(board.black_bishop, color) +
-           "Knight: " + knight_moves(board.black_knight, color) + "Queen: " + queen_moves(board.black_queen, color) +
-           "King: " + king_moves(board.black_king, color) + "Castle: " + castle(board, color);
+           knight_moves(board.black_knight, color) +
+           queen_moves(board.black_queen, color) +
+           king_moves(board.black_king, color) + castle(board, color);
 }
 
 Chessboard init_board() {
@@ -550,16 +556,74 @@ Chessboard init_board() {
     return board;
 }
 
-Board make_move(Board board, Moves move) {
-    int src, dst;
+Chessboard init_null(){
+    Chessboard board;
+    board.black_pawn = 0x0;
+    board.black_knight = 0x0;
+    board.black_bishop = 0x0;
+    board.black_rook = 0x0;
+    board.black_queen = 0x0;
+    board.black_king = 0x0;
+    board.white_pawn = 0x0;
+    board.white_knight = 0x0;
+    board.white_bishop = 0x0;
+    board.white_rook = 0x0;
+    board.white_queen = 0x0;
+    board.white_king = 0x0;
+    board.en_passant = 0x0;
+    board.king_castle_white = false;
+    board.queen_castle_white = false;
+    board.king_castle_black = false;
+    board.queen_castle_black = false;
+    return board;
+}
 
-    src = num_c(0) + num_r(1);
-    dst = num_c(2) + num_r(3);
-    if(((static_cast<ULong>(board) >> src) & 1) == 1) {
-        board &= ~(static_cast<ULong>(1)<<src); //remove
-        board |= (static_cast<ULong>(1)<<dst); //move
+int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to){//Moves source, Moves destination) {
+    //Moves move = source+destination;
+    Moves all_moves = moves(c_board,player);
+    //cout << "All moves: " << all_moves <<endl;
+    if(legal(move)){
+    int src, dst;
+    if(isdigit(move[3])){
+        src = num_c(0) + num_r(1); //en
+        dst = num_c(2) + num_r(3);
+        if (((static_cast<ULong>(*board) >> src) & 1) == 1) { //Exists
+            *board &= ~(static_cast<ULong>(1) << src); //remove
+            *board |= (static_cast<ULong>(1) << dst); //move
+        } else {
+            *board &= ~(static_cast<ULong>(1) << dst);
+        }
+    }else if(move[3] == 'E'){
+        if(move[2] == 'B'){
+            src  = trailing_count(file[move[0]-'a']&rank_[4]);
+            dst  = trailing_count(file[move[1]-'a']&rank_[5]);
+            *board&=~(file[move[1]-'a']&rank_[4]);
+        }else{
+            src  = trailing_count(file[move[0]-'a']&rank_[3]);
+            dst  = trailing_count(file[move[1]-'a']&rank_[2]);
+            *board&=~(file[move[1]-'a']&rank_[3]);
+        }if (((static_cast<ULong>(*board) >> src) & 1) == 1) {
+            *board &= ~(static_cast<ULong>(1) << src);
+            *board |= (static_cast<ULong>(1) << dst);
+        }
+    }else if(move[3] == 'P'){
+        if(islower(move[2])){
+            src  = trailing_count(file[move[0]-'a']&rank_[6]);
+            dst  = trailing_count(file[move[1]-'a']&rank_[7]);
+        }else{
+            src  = trailing_count(file[move[0]-'a']&rank_[1]);
+            dst  = trailing_count(file[move[1]-'a']&rank_[0]);
+        }
+        if (move[2] == promote_to) {
+            *board &= ~(static_cast<ULong>(1) << src);
+            *board |= (static_cast<ULong>(1) << dst);
+        } else {
+            *board &= ~(static_cast<ULong>(1) << dst);
+        }
+    }return 1;
     }else{
-        board &= ~(static_cast<ULong>(1)<<dst);
+        cout << "Invalid move for given piece" <<endl;
+        return 0;
     }
 
 }
@@ -602,6 +666,39 @@ Board get_board_by_name(Chessboard board, char *name) {
             default:
                 break;
         }
+    }
+}
+
+Board* get_board(Chessboard* board, char unit) {
+    //p n b r q k
+    switch (unit) {
+        case 'P':
+            return &board->white_pawn;
+        case 'N':
+            return &board->white_knight;
+        case 'B':
+            return &board->white_bishop;
+        case 'R':
+            return &board->white_rook;
+        case 'Q':
+            return &board->white_queen;
+        case 'K':
+            return &board->white_king;
+        case 'p':
+            return &board->black_pawn;
+        case 'n':
+            return &board->black_knight;
+        case 'b':
+            return &board->black_bishop;
+        case 'r':
+            return &board->black_rook;
+        case 'q':
+            return &board->black_queen;
+        case 'k':
+            return &board->black_king;
+        default:
+            return NULL;
+            break;
     }
 }
 
@@ -651,7 +748,7 @@ Long get_hash(Chessboard board, bool turn) {
         }
     }
     for (int c = 0; c < 8; c++) {
-        if (board.en_passant == file[c]) key ^= Z.en_passant[c];
+        if (board.en_passant == rank_[c]) key ^= Z.en_passant[c];
     }
     if (board.king_castle_white) key ^= Z.castle[0];
     if (board.queen_castle_white) key ^= Z.castle[1];
@@ -673,7 +770,7 @@ Long get_hash(Chessboard board, bool turn) {
 
 }*/
 Chessboard FEN(string FEN) {
-    Chessboard board;
+    Chessboard board = init_null();
     int i = 0, location = 0;
     while (FEN[i] != ' ') {
         switch (FEN[i++]) {
@@ -719,25 +816,25 @@ Chessboard FEN(string FEN) {
                 location++;
                 break;
             case '2':
-                location++;
+                location+=2;
                 break;
             case '3':
-                location++;
+                location+=3;
                 break;
             case '4':
-                location++;
+                location+=4;
                 break;
             case '5':
-                location++;
+                location+=5;
                 break;
             case '6':
-                location++;
+                location+=6;
                 break;
             case '7':
-                location++;
+                location+=7;
                 break;
             case '8':
-                location++;
+                location+=8;
                 break;
             default:
                 break;
@@ -765,7 +862,85 @@ Chessboard FEN(string FEN) {
                 break;
         }
     }
-    if (FEN[++i] != '-') board.en_passant = file[(int) (FEN[++i] - 'a')];
+    if (FEN[++i] != '-') board.en_passant = rank_[(int) (FEN[i++] - 'a')];
     return board;
+}
+
+void print_cb(Chessboard board) {
+    char position;
+    printf("\n\n");
+    //printf("  ");
+    for (int cell = 0; cell < 64; cell++) {
+        if (cell % 8 == 0 && cell != 0) printf("\n");
+        if (in_cell(board.white_pawn, cell)) {
+            cout << "P ";
+        } else if (in_cell(board.white_knight, cell)) {
+            cout << "N ";
+        } else if (in_cell(board.white_bishop, cell)) {
+            cout << "B ";
+        } else if (in_cell(board.white_rook, cell)) {
+            cout << "R ";
+        } else if (in_cell(board.white_queen, cell)) {
+            cout << "Q ";
+        } else if (in_cell(board.white_king, cell)) {
+            cout << "K ";
+        } else if (in_cell(board.black_pawn, cell)) {
+            cout << "p ";
+        } else if (in_cell(board.black_knight, cell)) {
+            cout << "n ";
+        } else if (in_cell(board.black_bishop, cell)) {
+            cout << "b ";
+        } else if (in_cell(board.black_rook, cell)) {
+            cout << "r ";
+        } else if (in_cell(board.black_queen, cell)) {
+            cout << "q ";
+        } else if (in_cell(board.black_king, cell)) {
+            cout << "k ";
+        } else {
+            cout << "_ ";
+        }
+    }
+    printf("\n\n");
+}
+
+char unit(Chessboard board, Moves square){
+    int location = (square[0] - 'a') + ((square[1] - '1')*8);
+    if (in_cell(board.white_pawn, location)) {
+        return 'P';
+    } else if (in_cell(board.white_knight, location)) {
+        return 'N';
+    } else if (in_cell(board.white_bishop, location)) {
+        return 'B';
+    } else if (in_cell(board.white_rook, location)) {
+        return 'R';
+    } else if (in_cell(board.white_queen, location)) {
+        return 'Q';
+    } else if (in_cell(board.white_king, location)) {
+        return 'K';
+    } else if (in_cell(board.black_pawn, location)) {
+        return 'p';
+    } else if (in_cell(board.black_knight, location)) {
+        return 'n';
+    } else if (in_cell(board.black_bishop, location)) {
+        return 'b';
+    } else if (in_cell(board.black_rook, location)) {
+        return 'r';
+    } else if (in_cell(board.black_queen, location)) {
+        return 'q';
+    } else if (in_cell(board.black_king, location)) {
+        return 'k';
+    } else {
+        return 'X';
+    }
+}
+
+void play(Chessboard *board, Moves move){
+    Board *src = get_board(board,unit(*board,move.substr(0,2)));//board(0);
+    Board *dest = get_board(board,unit(*board,move.substr(2,2)));
+    if(move_piece(*board, src, move, move[3])){
+        if (dest != NULL) move_piece(*board, dest, move, move[3]);
+        player = !player;
+    }
+    move_counter++;
 }
 
