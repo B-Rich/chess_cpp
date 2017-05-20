@@ -15,6 +15,7 @@ Moves castle(Chessboard board, bool color);
 Moves moves(Chessboard board, bool color);
 void print(Board board);
 Chessboard init_board();
+Chessboard init_null();
 void init_zo();
 Long get_hash(Chessboard board, bool turn);
 Board get_board_by_name(Chessboard board, char *name);
@@ -23,6 +24,7 @@ Chessboard FEN(string FEN);
 void print_cb(Chessboard board);
 int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to);
 char unit(Chessboard board, Moves square);
-void play(Chessboard *board, Moves move);
+int play(Chessboard *board, Moves move);
 extern int move_counter;
+static short MAX_DEPTH = 2;
 #endif //CHESS_MOVE_ENGINE_H

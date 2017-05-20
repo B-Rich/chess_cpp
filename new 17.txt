@@ -1,0 +1,1117 @@
+C:\Users\Me\CLionProjects\Chess\cmake-build-debug\Chess.exe
+3
+62
+1
+2
+108
+4
+97
+1
+72340172838076673
+
+
+_ x _ x _ _ _ _
+x _ _ _ x _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ x _ _ _
+_ x _ x _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+h
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+
+
+
+Stringer: h
+
+
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+-8244021443340506319
+-8520564311463789871
+1
+1
+-8545570691239873126
+4 3 2 1 Chessboard test:
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+FEN test:
+
+
+r n _ q k b _ r
+p p p _ _ p p p
+_ _ _ _ p n _ _
+_ _ _ p _ b _ _
+_ _ _ P _ B _ _
+_ _ N _ P _ _ _
+P P P _ _ P P P
+R _ _ Q K B N R
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+R N B Q K B N R
+_ P P P P P P P
+_ _ _ _ _ _ _ _
+P _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Alpha: -2147483648
+Beta: 150
+Color: 0
+Depth: 2
+Move: e7e6
+Rating: 318
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ x x _ _ _
+_ _ _ x x _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+66
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Please choose your color? [W]\BB
+ B
+
+
+R _ B Q K B N R
+P P P P P P P P
+_ _ N _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Black's move
+Enter your move:?
+ ?
+Possible moves (20):
+1: a7a6. 2: b7b6. 3: c7c6. 4: d7d6. 5: e7e6. 6: f7f6. 7: g7g6. 8: h7h6. 9: a7a5. 10: b7b5. 11: c7c5. 12: d7d5. 13: e7e5.
+ 14: f7f5. 15: g7g5. 16: h7h5. 17: b8a6. 18: b8c6. 19: g8f6. 20: g8h6.
+Enter your move:e7e5
+ e7e5
+
+
+R _ B Q K B N R
+P P P P P P P P
+_ _ N _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+2
+Execution time  is 0.008 seconds
+Do you wish to make further moves? [Y]\n:
+
+
+
+R _ B Q K B N R
+P P P P _ P P P
+_ _ N _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+Black's move
+Enter your move:g7g5
+ g7g5
+
+
+R _ B Q K B N R
+P P P P _ P P P
+_ _ N _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ p _ p _
+_ _ _ _ _ _ _ _
+p p p p _ p _ p
+r n b q k b n r
+
+4
+Execution time  is 0.011001 seconds
+Do you wish to make further moves? [Y]\n:
+
+
+
+R _ B Q K B N R
+P P P P _ P P P
+_ _ N _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ p _ p _
+_ _ _ _ _ _ _ _
+p p p p _ p _ p
+r n b q k b n r
+
+Black's move
+Enter your move:?
+ ?
+Possible moves (28):
+1: g5g4. 2: a7a6. 3: b7b6. 4: c7c6. 5: d7d6. 6: f7f6. 7: h7h6. 8: a7a5. 9: b7b5. 10: c7c5. 11: d7d5. 12: f7f5. 13: h7h5.
+ 14: f8a3. 15: f8b4. 16: f8c5. 17: f8d6. 18: f8h6. 19: f8e7. 20: f8g7. 21: b8a6. 22: b8c6. 23: g8f6. 24: g8h6. 25: g8e7.
+ 26: d8f6. 27: d8e7. 28: e8e7.
+Enter your move:f8h6
+ f8h6
+
+
+R _ B Q K B N R
+P P P P _ P P P
+_ _ N _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ p _ p _
+_ _ _ _ _ _ _ b
+p p p p _ p _ p
+r n b q k _ n r
+
+6
+Execution time  is 0.016001 seconds
+Do you wish to make further moves? [Y]\n:
+
+
+
+R _ B Q K B _ R
+P P P P N P P P
+_ _ N _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ p _ p _
+_ _ _ _ _ _ _ b
+p p p p _ p _ p
+r n b q k _ n r
+
+Black's move
+Enter your move:
+
+//////////////////////////////////////
+
+C:\Users\Me\CLionProjects\Chess\cmake-build-debug\Chess.exe
+3
+62
+1
+2
+108
+4
+97
+1
+72340172838076673
+
+
+_ x _ x _ _ _ _
+x _ _ _ x _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ x _ _ _
+_ x _ x _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+h
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+
+
+
+Stringer: h
+
+
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+-8244021443340506319
+-8520564311463789871
+1
+1
+-8545570691239873126
+4 3 2 1 Chessboard test:
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+FEN test:
+
+
+r n _ q k b _ r
+p p p _ _ p p p
+_ _ _ _ p n _ _
+_ _ _ p _ b _ _
+_ _ _ P _ B _ _
+_ _ N _ P _ _ _
+P P P _ _ P P P
+R _ _ Q K B N R
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+R N B Q K B N R
+_ P P P P P P P
+_ _ _ _ _ _ _ _
+P _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Alpha: -2147483648
+Beta: 150
+Color: 0
+Depth: 2
+Move: e7e6
+Rating: 318
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ x x _ _ _
+_ _ _ x x _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+66
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Please choose your color? [W]\BB
+ B
+Move: b1c3
+
+
+R _ B Q K B N R
+P P P P P P P P
+_ _ N _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Black's move
+Enter your move:e7e5
+ e7e5
+
+
+R _ B Q K B N R
+P P P P P P P P
+_ _ N _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+2
+Execution time  is 0.012001 seconds
+Do you wish to make further moves? [Y]\n:
+
+Move: e2e3
+
+
+R _ B Q K B N R
+P P P P _ P P P
+_ _ N _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+Black's move
+Enter your move:?
+ ?
+Possible moves (30):
+1: e5e4. 2: a7a6. 3: b7b6. 4: c7c6. 5: d7d6. 6: f7f6. 7: g7g6. 8: h7h6. 9: a7a5. 10: b7b5. 11: c7c5. 12: d7d5. 13: f7f5.
+ 14: g7g5. 15: h7h5. 16: f8a3. 17: f8b4. 18: f8c5. 19: f8d6. 20: f8e7. 21: b8a6. 22: b8c6. 23: g8f6. 24: g8h6. 25: g8e7.
+ 26: d8h4. 27: d8g5. 28: d8f6. 29: d8e7. 30: e8e7.
+Enter your move:f8b4
+ f8b4
+
+
+R _ B Q K B N R
+P P P P _ P P P
+_ _ N _ P _ _ _
+_ b _ _ _ _ _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k _ n r
+
+4
+Execution time  is 0.011 seconds
+Do you wish to make further moves? [Y]\n:
+
+Move: f2f4
+
+
+R _ B Q K B N R
+P P P P _ _ P P
+_ _ N _ P _ _ _
+_ b _ _ _ P _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k _ n r
+
+Black's move
+Enter your move:h7h5
+ h7h5
+
+
+R _ B Q K B N R
+P P P P _ _ P P
+_ _ N _ P _ _ _
+_ b _ _ _ P _ _
+_ _ _ _ p _ _ p
+_ _ _ _ _ _ _ _
+p p p p _ p p _
+r n b q k _ n r
+
+6
+Execution time  is 0.017001 seconds
+Do you wish to make further moves? [Y]\n:
+
+Move: f1e2
+
+
+R _ B Q K _ N R
+P P P P B _ P P
+_ _ N _ P _ _ _
+_ b _ _ _ P _ _
+_ _ _ _ p _ _ p
+_ _ _ _ _ _ _ _
+p p p p _ p p _
+r n b q k _ n r
+
+Black's move
+Enter your move:?
+ ?
+Possible moves (35):
+1: e5f4. 2: e5e4. 3: h5h4. 4: a7a6. 5: b7b6. 6: c7c6. 7: d7d6. 8: f7f6. 9: g7g6. 10: a7a5. 11: b7b5. 12: c7c5. 13: d7d5.
+ 14: f7f5. 15: g7g5. 16: h8h6. 17: h8h7. 18: b4a3. 19: b4c3. 20: b4a5. 21: b4c5. 22: b4d6. 23: b4e7. 24: b4f8. 25: b8a6.
+ 26: b8c6. 27: g8f6. 28: g8h6. 29: g8e7. 30: d8h4. 31: d8g5. 32: d8f6. 33: d8e7. 34: e8e7. 35: e8f8.
+Enter your move:g8f6
+ g8f6
+
+
+R _ B Q K _ N R
+P P P P B _ P P
+_ _ N _ P _ _ _
+_ b _ _ _ P _ _
+_ _ _ _ p _ _ p
+_ _ _ _ _ n _ _
+p p p p _ p p _
+r n b q k _ _ r
+
+8
+Execution time  is 0.031002 seconds
+Do you wish to make further moves? [Y]\n:
+
+Move: g1f3
+
+
+R _ B Q K _ _ R
+P P P P B _ P P
+_ _ N _ P N _ _
+_ b _ _ _ P _ _
+_ _ _ _ p _ _ p
+_ _ _ _ _ n _ _
+p p p p _ p p _
+r n b q k _ _ r
+
+Black's move
+Enter your move:?
+ ?
+Possible moves (34):
+1: e5f4. 2: e5e4. 3: h5h4. 4: a7a6. 5: b7b6. 6: c7c6. 7: d7d6. 8: g7g6. 9: a7a5. 10: b7b5. 11: c7c5. 12: d7d5. 13: g7g5.
+ 14: h8h6. 15: h8h7. 16: h8f8. 17: h8g8. 18: b4a3. 19: b4c3. 20: b4a5. 21: b4c5. 22: b4d6. 23: b4e7. 24: b4f8. 25: f6e4.
+ 26: f6g4. 27: f6d5. 28: f6h7. 29: f6g8. 30: b8a6. 31: b8c6. 32: d8e7. 33: e8e7. 34: e8f8.
+Enter your move:a7a5
+ a7a5
+
+
+R _ B Q K _ _ R
+P P P P B _ P P
+_ _ N _ P N _ _
+_ b _ _ _ P _ _
+p _ _ _ p _ _ p
+_ _ _ _ _ n _ _
+_ p p p _ p p _
+r n b q k _ _ r
+
+10
+Execution time  is 0.016001 seconds
+Do you wish to make further moves? [Y]\n:
+
+Move: f4e5
+
+
+R _ B Q K _ _ R
+P P P P B _ P P
+_ _ N _ P N _ _
+_ b _ _ _ _ _ _
+p _ _ _ P _ _ p
+_ _ _ _ _ n _ _
+_ p p p _ p p _
+r n b q k _ _ r
+
+Black's move
+Enter your move:?
+ ?
+Possible moves (32):
+1: a5a4. 2: h5h4. 3: b7b6. 4: c7c6. 5: d7d6. 6: g7g6. 7: b7b5. 8: c7c5. 9: d7d5. 10: g7g5. 11: a8a6. 12: a8a7. 13: h8h6.
+ 14: h8h7. 15: h8f8. 16: h8g8. 17: b4a3. 18: b4c3. 19: b4c5. 20: b4d6. 21: b4e7. 22: b4f8. 23: f6e4. 24: f6g4. 25: f6d5.
+ 26: f6h7. 27: f6g8. 28: b8a6. 29: b8c6. 30: d8e7. 31: e8e7. 32: e8f8.
+Enter your move:c7c6
+ c7c6
+
+
+R _ B Q K _ _ R
+P P P P B _ P P
+_ _ N _ P N _ _
+_ b _ _ _ _ _ _
+p _ _ _ P _ _ p
+_ _ p _ _ n _ _
+_ p _ p _ p p _
+r n b q k _ _ r
+
+12
+Execution time  is 0.017001 seconds
+Do you wish to make further moves? [Y]\n:
+
+Move: e5f6
+
+
+R _ B Q K _ _ R
+P P P P B _ P P
+_ _ N _ P N _ _
+_ b _ _ _ _ _ _
+p _ _ _ _ _ _ p
+_ _ p _ _ P _ _
+_ p _ p _ p p _
+r n b q k _ _ r
+
+Black's move
+Enter your move:
+
+//////////////////////////////////////////
+//////////////////////////////////////////
+C:\Users\Me\CLionProjects\Chess\cmake-build-debug\Chess.exe
+3
+62
+1
+2
+108
+4
+97
+1
+72340172838076673
+
+
+_ x _ x _ _ _ _
+x _ _ _ x _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ x _ _ _
+_ x _ x _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+h
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+
+
+
+Stringer: h
+
+
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+-8244021443340506319
+-8520564311463789871
+1
+1
+-8545570691239873126
+4 3 2 1 Chessboard test:
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+FEN test:
+
+
+r n _ q k b _ r
+p p p _ _ p p p
+_ _ _ _ p n _ _
+_ _ _ p _ b _ _
+_ _ _ P _ B _ _
+_ _ N _ P _ _ _
+P P P _ _ P P P
+R _ _ Q K B N R
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+R N B Q K B N R
+_ P P P P P P P
+_ _ _ _ _ _ _ _
+P _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Alpha: -2147483648
+Beta: 150
+Color: 0
+Depth: 6
+Move: e7e6
+Rating: 318
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ x x _ _ _
+_ _ _ x x _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+66
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Please choose your color? [W]\BW
+ W
+White's move
+Enter your move:e2e4
+ e2e4
+a7a6b7b6c7c6d7d6e7e6f7f6g7g6h7h6a7a5b7b5c7c5d7d5e7e5f7f5g7g5h7h5b8a6b8c6g8f6g8h6
+Move: b8c6
+
+
+R N B Q K B N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ n _ _ _ _ _
+p p p p p p p p
+r _ b q k b n r
+
+2
+Execution time  is 0.021001 seconds
+Do you wish to make further moves? [Y]\n:
+
+
+
+
+/////////////////////////
+
+
+
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+66
+Found at move at depth 2 which is e2e4 in 0.230013 seconds
+Play now invoked!
+Terminating thread
+Found at move at depth 3 which is e2e4 in 1.07406 seconds
+AI move was: e2e4
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Please choose your color? [W]\B B
+
+
+R N B Q K B N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Black's move
+Enter your move: e7e6
+
+
+R N B Q K B N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ p _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+2
+Execution time  is 0.242013 seconds
+Do you wish to make further moves? [Y]\n:
+
+
+R N B Q K _ N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ _ _ _ _
+B _ _ _ p _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+Black's move
+Enter your move: c7c5
+
+
+R N B Q K _ N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ p _ _ _ _ _
+B _ _ _ p _ _ _
+p p _ p _ p p p
+r n b q k b n r
+
+4
+Execution time  is 0.724042 seconds
+Do you wish to make further moves? [Y]\n:
+
+
+R N B Q K _ N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ p _ _ _ _ _
+_ _ _ _ p _ _ _
+p B _ p _ p p p
+r n b q k b n r
+
+Black's move
+Enter your move: ^C
+C:\Users\Me\CLionProjects\Chess\cmake-build-debug>Chess.exe
+3
+62
+1
+2
+108
+4
+97
+1
+72340172838076673
+
+
+_ x _ x _ _ _ _
+x _ _ _ x _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ x _ _ _
+_ x _ x _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+h
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+
+
+
+Stringer: h
+
+
+_ _ _ _ _ _ _ _
+x x x x x x x x
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+-8244021443340506319
+-8520564311463789871
+1
+1
+-8545570691239873126
+4 3 2 1 Chessboard test:
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+FEN test:
+
+
+r n _ q k b _ r
+p p p _ _ p p p
+_ _ _ _ p n _ _
+_ _ _ p _ b _ _
+_ _ _ P _ B _ _
+_ _ N _ P _ _ _
+P P P _ _ P P P
+R _ _ Q K B N R
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+x _ _ _ _ _ _ x
+
+
+
+R N B Q K B N R
+_ P P P P P P P
+_ _ _ _ _ _ _ _
+P _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Alpha: -2147483648
+Beta: 150
+Color: 0
+Depth: 2
+Move: e8d7
+Rating: 308
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ x x _ _ _
+_ _ _ x x _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+
+
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ x x x x _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+
+66
+Found at move at depth 2 which is e2e4 in 0.217013 seconds
+Found at move at depth 3 which is e2e4 in 0.87605 seconds
+Play now invoked!
+Terminating thread
+Found at move at depth 4 which is e2e4 in 26.9285 seconds
+AI move was: e2e4
+
+
+R N B Q K B N R
+P P P P P P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Please choose your color? [W]\B B
+
+
+R N B Q K B N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _
+p p p p p p p p
+r n b q k b n r
+
+Black's move
+Enter your move: e7e5
+
+
+R N B Q K B N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ p _ _ _
+_ _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+1659001241599
+2
+Execution time  is 0.242014 seconds
+Do you wish to make further moves? [Y]\n: n
+
+
+R N B Q K _ N R
+P P P P _ P P P
+_ _ _ _ _ _ _ _
+_ _ _ _ P _ _ _
+_ _ _ _ p _ _ _
+B _ _ _ _ _ _ _
+p p p p _ p p p
+r n b q k b n r
+
+Black's move
+Enter your move: F^C

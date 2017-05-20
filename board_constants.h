@@ -10,8 +10,8 @@ const Long promotion_black = 0xFF; //Row 1
 const Long enpassant_black = 0xFF00000000; //Row 4
 const Long enpassant_white = 0xFF000000; //Row 5
 const Long promotion_white = 0xFF00000000000000; //Row 8
-const Long d = 0x1818000000;
-const Long dd = 0x3C3C3C3C0000;
+const Long middle = 0x1818000000;
+const Long middle_plus = 0x3C3C3C3C0000;
 const Long king_castle = 0xF0F0F0F0F0F0F0F0; //Castling
 const Long queen_castle = 0xF0F0F0F0F0F0F0F; //Castling
 const Long king_region = 0x70507;
@@ -35,4 +35,6 @@ extern Long taken;
 extern Long available;
 extern Zobrist Z;
 extern bool player;
+extern bool human;
+extern bool bot;
 #endif //CHESS_BOARD_CONSTANTS_H

@@ -10,6 +10,8 @@ Long units;
 Long taken;
 Zobrist Z;
 bool player;
+bool human;
+bool bot;
 int move_counter;
 /*
 8 ║♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
@@ -161,8 +163,8 @@ Moves white_pawn_moves(Board white_pawns, Board black_pawns, Board en_passant) {
     Long capture = potential_moves & ~(potential_moves - 1);
     while (capture != 0) {
         position = trailing_count(capture);
-        moves += stringer((position % 8 + 'a' + 1)) + to_string(position / 8 - 1) +
-                 stringer((position % 8 + 'a')) + to_string(position / 8);
+        moves += stringer((position % 8 + 'a' + 1)) + to_string(position / 8) +
+                 stringer((position % 8 + 'a')) + to_string(position / 8 + 1);
         potential_moves &= ~capture;
         capture = potential_moves & ~(potential_moves - 1);
     }
@@ -203,13 +205,13 @@ Moves white_pawn_moves(Board white_pawns, Board black_pawns, Board en_passant) {
     while (capture != 0) {
         position = trailing_count(capture);
         moves += stringer((position % 8 + 'a' + 1)) +
-                 stringer((position % 8 + 'a')) + "QP" +
+                 stringer((position % 8)) + "QP" +
                  stringer((position % 8 + 'a' + 1)) +
-                 stringer((position % 8 + 'a')) +
+                 stringer((position % 8)) +
                  "NP" + stringer((position % 8 + 'a' + 1)) +
-                 stringer((position % 8 + 'a')) + "BP" +
+                 stringer((position % 8)) + "BP" +
                  stringer((position % 8 + 'a' + 1)) +
-                 stringer((position % 8 + 'a')) + "RP";
+                 stringer((position % 8)) + "RP";
         potential_moves &= ~capture;
         capture = potential_moves & ~(potential_moves - 1);
     }
@@ -219,13 +221,13 @@ Moves white_pawn_moves(Board white_pawns, Board black_pawns, Board en_passant) {
     while (capture != 0) {
         position = trailing_count(capture);
         moves += stringer((position % 8 + 'a' - 1)) +
-                 stringer((position % 8 + 'a')) + "QP"
+                 stringer((position % 8)) + "QP"
                  + stringer((position % 8 + 'a' - 1)) +
-                 stringer((position % 8 + 'a')) +
+                 stringer((position % 8)) +
                  "NP" + stringer((position % 8 + 'a' - 1)) +
-                 stringer((position % 8 + 'a')) + "BP" +
+                 stringer((position % 8)) + "BP" +
                  stringer((position % 8 + 'a' - 1)) +
-                 stringer((position % 8 + 'a')) + "RP";
+                 stringer((position % 8)) + "RP";
         potential_moves &= ~capture;
         capture = potential_moves & ~(potential_moves - 1);
     }
@@ -235,13 +237,13 @@ Moves white_pawn_moves(Board white_pawns, Board black_pawns, Board en_passant) {
     while (capture != 0) {
         position = trailing_count(capture);
         moves += stringer((position % 8 + 'a')) +
-                 stringer((position % 8 + 'a')) + "QP"
+                 stringer((position % 8)) + "QP"
                  + stringer((position % 8 + 'a')) +
-                 stringer((position % 8 + 'a')) +
+                 stringer((position % 8)) +
                  "NP" + stringer((position % 8 + 'a')) +
-                 stringer((position % 8 + 'a')) + "BP" +
+                 stringer((position % 8)) + "BP" +
                  stringer((position % 8 + 'a')) +
-                 stringer((position % 8 + 'a')) +
+                 stringer((position % 8)) +
                  "RP";
         potential_moves &= ~capture;
         capture = potential_moves & ~(potential_moves - 1);
@@ -453,10 +455,10 @@ Moves king_moves(Board king, Long taken) {
     } else {
         capture = king_region >> (9 - location);
     }
-    if (location % 8 < 4) {
-        capture &= ~knight_right & taken;
+    if (location % 8 >= 4) {
+        capture &= ~knight_right & not_to_capture;//capture &= ~knight_right & taken;
     } else {
-        capture &= ~knight_left & taken;
+        capture &= ~knight_left & not_to_capture;//capture &= ~knight_left & taken;
     }
     king_moves = capture & ~(capture - 1);
     while (king_moves != 0) {
@@ -476,12 +478,12 @@ Moves castle(Chessboard board, bool color) {
         if ((dangerous & board.black_king) == 0) {
             if (board.king_castle_black && (((static_cast<Long>(1) << 0x7L) & board.black_rook) != 0)) {
                 if (((taken | dangerous) & ((static_cast<Long>(1) << 5) | (static_cast<Long>(1) << 6))) == 0)
-                    moves += "d1f1";//"0406";
+                    moves += "d1f1";
             }
             if (board.queen_castle_black && (((static_cast<Long>(1) << 0x0L) & board.black_rook) != 0)) {
                 if (((taken | (dangerous & ~(static_cast<Long>(1) << 1))) &
                      ((static_cast<Long>(1) << 1) | (static_cast<Long>(1) << 2) | (static_cast<Long>(1) << 3))) == 0)
-                    moves += "d1b1"; //"0402";
+                    moves += "d1b1";
             }
         }
     }
@@ -489,12 +491,12 @@ Moves castle(Chessboard board, bool color) {
         if ((dangerous & board.white_king) == 0) {
             if (board.king_castle_white && (((static_cast<Long>(1) << 0x3FL) & board.white_rook) != 0)) {
                 if (((taken | dangerous) & ((static_cast<Long>(1) << 61) | (static_cast<Long>(1) << 62))) == 0)
-                    moves += "d8f8";//"7476";
+                    moves += "d8f8";
             }
             if (board.queen_castle_white && (((static_cast<Long>(1) << 0x38L) & board.white_rook) != 0)) {
                 if (((taken | (dangerous & ~(static_cast<Long>(1) << 57))) &
                      ((static_cast<Long>(1) << 57) | (static_cast<Long>(1) << 58) | (static_cast<Long>(1) << 59))) == 0)
-                    moves += "d8b8";//"7472";
+                    moves += "d8b8";
             }
         }
     }
@@ -580,9 +582,7 @@ Chessboard init_null(){
 
 int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to){//Moves source, Moves destination) {
     //Moves move = source+destination;
-    Moves all_moves = moves(c_board,player);
     //cout << "All moves: " << all_moves <<endl;
-    if(legal(move)){
     int src, dst;
     if(isdigit(move[3])){
         src = num_c(0) + num_r(1); //en
@@ -606,13 +606,13 @@ int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to){//
             *board &= ~(static_cast<ULong>(1) << src);
             *board |= (static_cast<ULong>(1) << dst);
         }
-    }else if(move[3] == 'P'){
-        if(islower(move[2])){
-            src  = trailing_count(file[move[0]-'a']&rank_[6]);
-            dst  = trailing_count(file[move[1]-'a']&rank_[7]);
-        }else{
-            src  = trailing_count(file[move[0]-'a']&rank_[1]);
-            dst  = trailing_count(file[move[1]-'a']&rank_[0]);
+    }else if(move[3] == 'P') {
+        if (islower(move[2])) {
+            src = trailing_count(file[move[0] - 'a'] & rank_[6]);
+            dst = trailing_count(file[move[1] - 'a'] & rank_[7]);
+        } else {
+            src = trailing_count(file[move[0] - 'a'] & rank_[1]);
+            dst = trailing_count(file[move[1] - 'a'] & rank_[0]);
         }
         if (move[2] == promote_to) {
             *board &= ~(static_cast<ULong>(1) << src);
@@ -620,12 +620,8 @@ int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to){//
         } else {
             *board &= ~(static_cast<ULong>(1) << dst);
         }
-    }return 1;
-    }else{
-        cout << "Invalid move for given piece" <<endl;
-        return 0;
     }
-
+    return 1;
 }
 
 Board get_board_by_name(Chessboard board, char *name) {
@@ -754,7 +750,7 @@ Long get_hash(Chessboard board, bool turn) {
     if (board.queen_castle_white) key ^= Z.castle[1];
     if (board.king_castle_black) key ^= Z.castle[2];
     if (board.queen_castle_black) key ^= Z.castle[3];
-    if (turn == black) key ^= Z.opponent_move;
+    if (turn != human) key ^= Z.opponent_move;//if (turn == black) key ^= Z.opponent_move;
     return key;
 }
 
@@ -934,13 +930,17 @@ char unit(Chessboard board, Moves square){
     }
 }
 
-void play(Chessboard *board, Moves move){
+int play(Chessboard *board, Moves move){
+    Moves all_moves = moves(*board,player);
     Board *src = get_board(board,unit(*board,move.substr(0,2)));//board(0);
     Board *dest = get_board(board,unit(*board,move.substr(2,2)));
-    if(move_piece(*board, src, move, move[3])){
-        if (dest != NULL) move_piece(*board, dest, move, move[3]);
-        player = !player;
+    if(legal(move)) {
+            move_piece(*board, src, move, move[3]);
+            if (dest != NULL) move_piece(*board, dest, move, move[3]);
+            player = !player;
+        move_counter++;
+        return 1;
     }
-    move_counter++;
+    return 0;
 }
 

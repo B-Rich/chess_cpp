@@ -19,6 +19,10 @@ void reverse(short *arr) {
     reverse(arr, 0, 63);
 }
 
+void pawn_ageing(Chessboard board){
+
+}
+
 int material_eval(Chessboard board) {
     int val = 0;
     if (player == white) {
@@ -60,24 +64,24 @@ int location_eval(Chessboard board, int material_val) { //add king moves
     bool end_game = material_val >= q_centi + n_centi + b_centi + r_centi ? 0 : 1;
     for (int cell = 0; cell < 64; cell++) {
         if (player == white) {
-            if (in_cell(board.white_pawn, cell)) val += r_pawn[cell];
-            if (in_cell(board.white_knight, cell)) val += r_knight[cell];
-            if (in_cell(board.white_bishop, cell)) val += r_bishop[cell];
-            if (in_cell(board.white_rook, cell)) val += r_rook[cell];
-            if (in_cell(board.white_queen, cell)) val += r_queen[cell];
+            if (in_cell(board.white_pawn, cell)) val += r_pawn[64 - cell];
+            if (in_cell(board.white_knight, cell)) val += r_knight[64 - cell];
+            if (in_cell(board.white_bishop, cell)) val += r_bishop[64 - cell];
+            if (in_cell(board.white_rook, cell)) val += r_rook[64 - cell];
+            if (in_cell(board.white_queen, cell)) val += r_queen[64 - cell];
             if (in_cell(board.white_king, cell)) {
                 if (end_game) {
-                    val += (r_king_late[cell] + king * 30);
+                    val += (r_king_late[64 - cell] + king * 30);
                 } else {
-                    val += (r_king_mid[cell] + king * 10);
+                    val += (r_king_mid[64 - cell] + king * 10);
                 }
             }
         } else {
-            if (in_cell(board.black_pawn, cell)) val += r_pawn[64 - cell];
-            if (in_cell(board.black_knight, cell)) val += r_knight[64 - cell];
-            if (in_cell(board.black_bishop, cell)) val += r_bishop[64 - cell];
-            if (in_cell(board.black_rook, cell)) val += r_rook[64 - cell];
-            if (in_cell(board.black_queen, cell)) val += r_queen[64 - cell];
+            if (in_cell(board.black_pawn, cell)) val += r_pawn[cell];
+            if (in_cell(board.black_knight, cell)) val += r_knight[cell];
+            if (in_cell(board.black_bishop, cell)) val += r_bishop[cell];
+            if (in_cell(board.black_rook, cell)) val += r_rook[cell];
+            if (in_cell(board.black_queen, cell)) val += r_queen[cell];
             if (in_cell(board.black_king, cell)) {
                 if (end_game) {
                     val += (r_king_late[cell] + king * 30);
@@ -119,23 +123,23 @@ int attack_eval(Chessboard board) { //only pawns and attacked by other units
             board.black_king = (static_cast<ULong>(1) << cell);
             if (in_cell(board.black_pawn, cell)) {
                 if (danger(board, player))
-                    val -= (p_centi - 20 * set_bits(board.black_pawn));
+                    val += (p_centi - 20 * set_bits(board.black_pawn));
             }
             if (in_cell(board.black_knight, cell)) {
                 if (danger(board, player))
-                    val -= (n_centi * set_bits(board.black_knight));
+                    val += (n_centi * set_bits(board.black_knight));
             }
             if (in_cell(board.black_bishop, cell)) {
                 if (danger(board, player))
-                    val -= (b_centi * set_bits(board.black_bishop));
+                    val += (b_centi * set_bits(board.black_bishop));
             }
             if (in_cell(board.black_rook, cell)) {
                 if (danger(board, player))
-                    val -= (r_centi * set_bits(board.black_rook));
+                    val += (r_centi * set_bits(board.black_rook));
             }
             if (in_cell(board.black_queen, cell)) {
                 if (danger(board, player))
-                    val -= (q_centi * set_bits(board.black_queen));
+                    val += (q_centi * set_bits(board.black_queen));
             }
         }
     }
@@ -149,5 +153,6 @@ int evaluate(Chessboard board, int depth, int moves) {
     int init_mat = material_eval(board);
     eval = attack_eval(board) + init_mat + mobility_eval(board, depth, moves) +
            location_eval(board, init_mat);
+    //if(player == black) return -eval;
     return eval;
 }
