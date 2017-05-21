@@ -1115,3 +1115,13 @@ r n b q k b n r
 
 Black's move
 Enter your move: F^C
+
+
+R N B Q _ B N R		x x x x x x x x
+_ _ P P K P p P		x x x x x x x x
+_ P _ _ _ _ _ _		x x x x x x x _
+P _ _ _ P _ _ _		x _ x _ _ _ _ x
+_ _ _ _ _ _ _ _		_ x _ x _ x _ _
+_ _ _ _ _ _ _ _		_ _ _ _ _ _ _ _
+p p p p p p p _		_ _ _ _ _ _ _ _
+r n b q k b n r		_ _ _ _ _ _ _ _

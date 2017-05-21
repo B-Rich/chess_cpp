@@ -758,7 +758,7 @@ Long get_hash(Chessboard board, bool turn) {
 
 Chessboard FEN(string FEN) {
     Chessboard board = init_null();
-    int i = 0, location = 63;
+    int i = 0, location = 0;
     while (FEN[i] != ' ') {
         switch (FEN[i++]) {
             case 'P':
@@ -800,28 +800,28 @@ Chessboard FEN(string FEN) {
             case '/':
                 break;
             case '1':
-                location--;
+                location++;
                 break;
             case '2':
-                location -= 2;
+                location += 2;
                 break;
             case '3':
-                location -= 3;
+                location += 3;
                 break;
             case '4':
-                location -= 4;
+                location += 4;
                 break;
             case '5':
-                location -= 5;
+                location += 5;
                 break;
             case '6':
-                location -= 6;
+                location += 6;
                 break;
             case '7':
-                location -= 7;
+                location += 7;
                 break;
             case '8':
-                location -= 8;
+                location += 8;
                 break;
             default:
                 break;
@@ -997,49 +997,67 @@ int play(Chessboard *board, Moves move) {
 }
 
 string to_FEN(Chessboard board) {
-    string FEN = "";
+    string game = "";
     int empty = 0;
-    for (int i = 64; i > 0; i--) {
-        int cell = i - 1;
-        if (i % 8 == 0 && i != 0 && i != 64) FEN += "/";
+    /**Board flattened = (board.white_bishop | board.white_knight | board.white_king | board.white_pawn |
+                       board.white_queen |
+                       board.white_rook | board.black_bishop | board.black_knight | board.black_king |
+                       board.black_pawn |
+                       board.black_queen | board.black_rook);**/
+    for (int cell = 63; cell >= 0; cell--) {
+        if (cell % 8 == 0 && cell != 0) game += "/";
         if (in_cell(board.white_pawn, cell)) {
-            FEN += "P";
+            if(empty > 0) game += to_string(empty);
+            game += "P";
         } else if (in_cell(board.white_knight, cell)) {
-            FEN += "N";
+            if(empty > 0) game += to_string(empty);
+            game += "N";
+            empty = 0;
         } else if (in_cell(board.white_bishop, cell)) {
-            FEN += "B";
+            if(empty > 0) game += to_string(empty);
+            game += "B";
+            empty = 0;
         } else if (in_cell(board.white_rook, cell)) {
-            FEN += "R";
+            if(empty > 0) game += to_string(empty);
+            game += "R";
+            empty = 0;
         } else if (in_cell(board.white_queen, cell)) {
-            FEN += "Q";
+            if(empty > 0) game += to_string(empty);
+            game += "Q";
+            empty = 0;
         } else if (in_cell(board.white_king, cell)) {
-            FEN += "K";
+            if(empty > 0) game += to_string(empty);
+            game += "K";
+            empty = 0;
         } else if (in_cell(board.black_pawn, cell)) {
-            FEN += "p";
+            if(empty > 0) game += to_string(empty);
+            game += "p";
+            empty = 0;
         } else if (in_cell(board.black_knight, cell)) {
-            FEN += "n";
+            if(empty > 0) game += to_string(empty);
+            game += "n";
+            empty = 0;
         } else if (in_cell(board.black_bishop, cell)) {
-            FEN += "b";
+            if(empty > 0) game += to_string(empty);
+            game += "b";
+            empty = 0;
         } else if (in_cell(board.black_rook, cell)) {
-            FEN += "r";
+            if(empty > 0) game += to_string(empty);
+            game += "r";
+            empty = 0;
         } else if (in_cell(board.black_queen, cell)) {
-            FEN += "q";
+            if(empty > 0) game += to_string(empty);
+            game += "q";
+            empty = 0;
         } else if (in_cell(board.black_king, cell)) {
-            FEN += "k";
+            if(empty > 0) game += to_string(empty);
+            game += "k";
+            empty = 0;
         } else {
             empty++;
-            FEN += "1";
         }
     }
-    FEN = player ? FEN+= " w " : FEN+= " b ";
-    FEN = board.king_castle_white ? FEN+= "K" : FEN;
-    FEN = board.queen_castle_white ? FEN+= "Q" : FEN;
-    FEN = !board.king_castle_white && board.queen_castle_white ? FEN += "-" : FEN;
-    FEN = board.king_castle_black ? FEN+= "k" : FEN;
-    FEN = board.queen_castle_black ? FEN+= "q" : FEN;
-    FEN = !board.king_castle_black && board.queen_castle_black ? FEN += "-" : FEN;
-    FEN += " 0 0";
-    return FEN;
+    return game;
 }
 
 

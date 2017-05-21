@@ -21,10 +21,11 @@ Long get_hash(Chessboard board, bool turn);
 Board get_board_by_name(Chessboard board, char *name);
 Board* get_board(Chessboard* board, char unit);
 Chessboard FEN(string FEN);
+string to_FEN(Chessboard board);
 void print_cb(Chessboard board);
 int move_piece(Chessboard c_board, Board *board, Moves move, char promote_to);
 char unit(Chessboard board, Moves square);
 int play(Chessboard *board, Moves move);
 extern int move_counter;
-static short MAX_DEPTH = 2;
+static short MAX_DEPTH = 3;
 #endif //CHESS_MOVE_ENGINE_H
